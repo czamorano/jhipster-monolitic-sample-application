@@ -1,0 +1,183 @@
+<div>
+  <h2 id="page-heading" data-cy="EnvioMasivoHeading">
+    <span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.home.title">Envio Masivos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading()">
+        <fa-icon icon="sync" [animation]="isLoading() ? 'spin' : undefined" />
+        <span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-envio-masivo"
+        [routerLink]="['/envio-masivo/new']"
+      >
+        <fa-icon icon="plus" />
+        <span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.home.createLabel">Create a new Envio Masivo</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (envioMasivos().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.home.notFound">No Envio Masivos found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="identificador">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.identificador">Identificador</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipo">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.tipo">Tipo</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="estado">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.estado">Estado</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="comienzo">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.comienzo">Comienzo</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fin">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.fin">Fin</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="aplicacion.id">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.aplicacion">Aplicacion</span>
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="organismoEmisor.id">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.organismoEmisor">Organismo Emisor</span>
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (envioMasivo of envioMasivos(); track trackId(envioMasivo)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/envio-masivo', envioMasivo.id, 'view']">{{ envioMasivo.id }}</a>
+              </td>
+              <td>{{ envioMasivo.identificador }}</td>
+              <td [jhiTranslate]="'jhipsterMonoliticSampleApplicationApp.TipoEnvioMasivo.' + (envioMasivo.tipo ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    CARTAS_ACREDITACION: 'CARTAS_ACREDITACION',
+                    CARTAS_RENOVACION: 'CARTAS_RENOVACION',
+                    REMESA_INSS: 'REMESA_INSS',
+                  }[envioMasivo.tipo ?? 'null']
+                }}
+              </td>
+              <td [jhiTranslate]="'jhipsterMonoliticSampleApplicationApp.EstadoEnvioMasivo.' + (envioMasivo.estado ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    PREPARADO: 'PREPARADO',
+                    INICIADO: 'INICIADO',
+                    PAUSADO: 'PAUSADO',
+                    REANUDADO: 'REANUDADO',
+                    FINALIZADO: 'FINALIZADO',
+                    CANCELADO: 'CANCELADO',
+                    ABORTADO: 'ABORTADO',
+                  }[envioMasivo.estado ?? 'null']
+                }}
+              </td>
+              <td>{{ envioMasivo.comienzo | formatMediumDatetime }}</td>
+              <td>{{ envioMasivo.fin | formatMediumDatetime }}</td>
+              <td>
+                @if (envioMasivo.aplicacion) {
+                  <div>
+                    <a [routerLink]="['/aplicacion', envioMasivo.aplicacion.id, 'view']">{{ envioMasivo.aplicacion.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (envioMasivo.organismoEmisor) {
+                  <div>
+                    <a [routerLink]="['/organismo-emisor', envioMasivo.organismoEmisor.id, 'view']">{{ envioMasivo.organismoEmisor.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/envio-masivo', envioMasivo.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye" />
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/envio-masivo', envioMasivo.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt" />
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(envioMasivo)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times" />
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (envioMasivos().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page(), totalItems: totalItems(), itemsPerPage: itemsPerPage() }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems()"
+          [page]="page()"
+          [pageSize]="itemsPerPage()"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        />
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,25 @@
+{
+  "jhipsterMonoliticSampleApplicationApp": {
+    "aplicacion": {
+      "home": {
+        "title": "Aplicacions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Aplicacion",
+        "createOrEditLabel": "Create or edit a Aplicacion",
+        "notFound": "No Aplicacions found"
+      },
+      "created": "A new Aplicacion is created with identifier {{ param }}",
+      "updated": "A Aplicacion is updated with identifier {{ param }}",
+      "deleted": "A Aplicacion is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Aplicacion {{ id }}?"
+      },
+      "detail": {
+        "title": "Aplicacion"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "envioMasivo": "Envio Masivo"
+    }
+  }
+}

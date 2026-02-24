@@ -1,0 +1,52 @@
+
+entity Aplicacion {
+	nombre String required
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity OrganismoEmisor {
+	nombre String required,
+	codigo String required
+}
+
+entity EnvioMasivo {
+	identificador String required,
+    tipo TipoEnvioMasivo required,
+    estado EstadoEnvioMasivo required,
+    comienzo Instant,
+    fin Instant
+}
+
+enum EstadoEnvioMasivo {
+	PREPARADO,
+    INICIADO,
+    PAUSADO,
+    REANUDADO,
+    FINALIZADO,
+    CANCELADO,
+    ABORTADO
+}
+
+enum TipoEnvioMasivo {
+    CARTAS_ACREDITACION, CARTAS_RENOVACION, REMESA_INSS
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Aplicacion to EnvioMasivo{aplicacion},
+    OrganismoEmisor to EnvioMasivo{organismoEmisor}
+}
+
+// Set pagination options
+paginate Aplicacion with infinite-scroll
+paginate EnvioMasivo with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except OrganismoEmiisor
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

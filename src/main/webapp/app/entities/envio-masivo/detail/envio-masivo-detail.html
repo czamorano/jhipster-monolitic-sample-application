@@ -1,0 +1,85 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (envioMasivo(); as envioMasivoRef) {
+      <div>
+        <h2 data-cy="envioMasivoDetailsHeading">
+          <span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.detail.title">Envio Masivo</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ envioMasivoRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.identificador">Identificador</span></dt>
+          <dd>
+            <span>{{ envioMasivoRef.identificador }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.tipo">Tipo</span></dt>
+          <dd>
+            <span [jhiTranslate]="'jhipsterMonoliticSampleApplicationApp.TipoEnvioMasivo.' + (envioMasivoRef.tipo ?? 'null')">{{
+              { null: '', CARTAS_ACREDITACION: 'CARTAS_ACREDITACION', CARTAS_RENOVACION: 'CARTAS_RENOVACION', REMESA_INSS: 'REMESA_INSS' }[
+                envioMasivoRef.tipo ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.estado">Estado</span></dt>
+          <dd>
+            <span [jhiTranslate]="'jhipsterMonoliticSampleApplicationApp.EstadoEnvioMasivo.' + (envioMasivoRef.estado ?? 'null')">{{
+              {
+                null: '',
+                PREPARADO: 'PREPARADO',
+                INICIADO: 'INICIADO',
+                PAUSADO: 'PAUSADO',
+                REANUDADO: 'REANUDADO',
+                FINALIZADO: 'FINALIZADO',
+                CANCELADO: 'CANCELADO',
+                ABORTADO: 'ABORTADO',
+              }[envioMasivoRef.estado ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.comienzo">Comienzo</span></dt>
+          <dd>
+            <span>{{ envioMasivoRef.comienzo | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.fin">Fin</span></dt>
+          <dd>
+            <span>{{ envioMasivoRef.fin | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.aplicacion">Aplicacion</span></dt>
+          <dd>
+            @if (envioMasivo()!.aplicacion) {
+              <div>
+                <a [routerLink]="['/aplicacion', envioMasivo()!.aplicacion?.id, 'view']">{{ envioMasivoRef.aplicacion?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.organismoEmisor">Organismo Emisor</span></dt>
+          <dd>
+            @if (envioMasivo()!.organismoEmisor) {
+              <div>
+                <a [routerLink]="['/organismo-emisor', envioMasivo()!.organismoEmisor?.id, 'view']">{{
+                  envioMasivoRef.organismoEmisor?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left" />&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/envio-masivo', envioMasivoRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt" />&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

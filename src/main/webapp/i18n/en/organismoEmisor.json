@@ -1,0 +1,26 @@
+{
+  "jhipsterMonoliticSampleApplicationApp": {
+    "organismoEmisor": {
+      "home": {
+        "title": "Organismo Emisors",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Organismo Emisor",
+        "createOrEditLabel": "Create or edit a Organismo Emisor",
+        "notFound": "No Organismo Emisors found"
+      },
+      "created": "A new Organismo Emisor is created with identifier {{ param }}",
+      "updated": "A Organismo Emisor is updated with identifier {{ param }}",
+      "deleted": "A Organismo Emisor is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Organismo Emisor {{ id }}?"
+      },
+      "detail": {
+        "title": "Organismo Emisor"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "codigo": "Codigo",
+      "envioMasivo": "Envio Masivo"
+    }
+  }
+}

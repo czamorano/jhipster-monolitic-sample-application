@@ -1,0 +1,26 @@
+{
+  "annotations": {
+    "changelogDate": "20260224184031"
+  },
+  "applications": ["*"],
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Aplicacion",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "otherEntityName": "envioMasivo",
+      "otherEntityRelationshipName": "aplicacion",
+      "relationshipName": "envioMasivo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

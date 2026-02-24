@@ -1,0 +1,30 @@
+{
+  "jhipsterMonoliticSampleApplicationApp": {
+    "envioMasivo": {
+      "home": {
+        "title": "Envio Masivos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Envio Masivo",
+        "createOrEditLabel": "Create or edit a Envio Masivo",
+        "notFound": "No Envio Masivos found"
+      },
+      "created": "A new Envio Masivo is created with identifier {{ param }}",
+      "updated": "A Envio Masivo is updated with identifier {{ param }}",
+      "deleted": "A Envio Masivo is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Envio Masivo {{ id }}?"
+      },
+      "detail": {
+        "title": "Envio Masivo"
+      },
+      "id": "ID",
+      "identificador": "Identificador",
+      "tipo": "Tipo",
+      "estado": "Estado",
+      "comienzo": "Comienzo",
+      "fin": "Fin",
+      "aplicacion": "Aplicacion",
+      "organismoEmisor": "Organismo Emisor"
+    }
+  }
+}
