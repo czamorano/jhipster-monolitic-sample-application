@@ -1,0 +1,24 @@
+{
+  "angularJSSuffix": "angulr",
+  "annotations": {
+    "changelogDate": "20260224185819"
+  },
+  "applications": ["*"],
+  "fields": [
+    {
+      "fieldName": "countryName",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Country",
+  "relationships": [
+    {
+      "otherEntityName": "region",
+      "relationshipName": "region",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

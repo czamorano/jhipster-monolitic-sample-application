@@ -1,0 +1,17 @@
+{
+  "angularJSSuffix": "angulr",
+  "annotations": {
+    "changelogDate": "20260224185818"
+  },
+  "applications": ["*"],
+  "fields": [
+    {
+      "fieldName": "regionName",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Region",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

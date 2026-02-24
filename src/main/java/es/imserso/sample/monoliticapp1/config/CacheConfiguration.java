@@ -49,6 +49,18 @@ public class CacheConfiguration {
             createCache(cm, es.imserso.sample.monoliticapp1.domain.OrganismoEmisor.class.getName());
             createCache(cm, es.imserso.sample.monoliticapp1.domain.OrganismoEmisor.class.getName() + ".envioMasivos");
             createCache(cm, es.imserso.sample.monoliticapp1.domain.EnvioMasivo.class.getName());
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.Region.class.getName());
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.Country.class.getName());
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.Location.class.getName());
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.Department.class.getName());
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.Department.class.getName() + ".employees");
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.Task.class.getName());
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.Task.class.getName() + ".jobs");
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.Employee.class.getName());
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.Employee.class.getName() + ".jobs");
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.Job.class.getName());
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.Job.class.getName() + ".tasks");
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.JobHistory.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
