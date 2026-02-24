@@ -1,0 +1,177 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-envio-masivo-heading"
+        data-cy="EnvioMasivoCreateUpdateHeading"
+        jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.home.createOrEditLabel"
+      >
+        Create or edit a Envio Masivo
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let identificadorRef = editForm.get('identificador')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_identificador" jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.identificador"
+            >Identificador</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="identificador"
+            id="field_identificador"
+            data-cy="identificador"
+            formControlName="identificador"
+          />
+          @if (identificadorRef.invalid && (identificadorRef.dirty || identificadorRef.touched)) {
+            <div>
+              @if (editForm.get('identificador')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let tipoRef = editForm.get('tipo')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_tipo" jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.tipo">Tipo</label>
+          <select class="form-control" name="tipo" formControlName="tipo" id="field_tipo" data-cy="tipo">
+            <option [ngValue]="null">{{ 'jhipsterMonoliticSampleApplicationApp.TipoEnvioMasivo.null' | translate }}</option>
+            @for (tipoEnvioMasivo of tipoEnvioMasivoValues; track $index) {
+              <option [value]="tipoEnvioMasivo">
+                {{ 'jhipsterMonoliticSampleApplicationApp.TipoEnvioMasivo.' + tipoEnvioMasivo | translate }}
+              </option>
+            }
+          </select>
+          @if (tipoRef.invalid && (tipoRef.dirty || tipoRef.touched)) {
+            <div>
+              @if (editForm.get('tipo')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let estadoRef = editForm.get('estado')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_estado" jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.estado"
+            >Estado</label
+          >
+          <select class="form-control" name="estado" formControlName="estado" id="field_estado" data-cy="estado">
+            <option [ngValue]="null">{{ 'jhipsterMonoliticSampleApplicationApp.EstadoEnvioMasivo.null' | translate }}</option>
+            @for (estadoEnvioMasivo of estadoEnvioMasivoValues; track $index) {
+              <option [value]="estadoEnvioMasivo">
+                {{ 'jhipsterMonoliticSampleApplicationApp.EstadoEnvioMasivo.' + estadoEnvioMasivo | translate }}
+              </option>
+            }
+          </select>
+          @if (estadoRef.invalid && (estadoRef.dirty || estadoRef.touched)) {
+            <div>
+              @if (editForm.get('estado')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_comienzo" jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.comienzo"
+            >Comienzo</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_comienzo"
+              data-cy="comienzo"
+              type="datetime-local"
+              class="form-control"
+              name="comienzo"
+              formControlName="comienzo"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fin" jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.fin">Fin</label>
+          <div class="d-flex">
+            <input
+              id="field_fin"
+              data-cy="fin"
+              type="datetime-local"
+              class="form-control"
+              name="fin"
+              formControlName="fin"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_aplicacion" jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.aplicacion"
+            >Aplicacion</label
+          >
+          <select
+            class="form-control"
+            id="field_aplicacion"
+            data-cy="aplicacion"
+            name="aplicacion"
+            formControlName="aplicacion"
+            [compareWith]="compareAplicacion"
+          >
+            <option [ngValue]="null"></option>
+            @for (aplicacionOption of aplicacionsSharedCollection(); track $index) {
+              <option [ngValue]="aplicacionOption">{{ aplicacionOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_organismoEmisor"
+            jhiTranslate="jhipsterMonoliticSampleApplicationApp.envioMasivo.organismoEmisor"
+            >Organismo Emisor</label
+          >
+          <select
+            class="form-control"
+            id="field_organismoEmisor"
+            data-cy="organismoEmisor"
+            name="organismoEmisor"
+            formControlName="organismoEmisor"
+            [compareWith]="compareOrganismoEmisor"
+          >
+            <option [ngValue]="null"></option>
+            @for (organismoEmisorOption of organismoEmisorsSharedCollection(); track $index) {
+              <option [ngValue]="organismoEmisorOption">{{ organismoEmisorOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban" />&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving()"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save" />&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

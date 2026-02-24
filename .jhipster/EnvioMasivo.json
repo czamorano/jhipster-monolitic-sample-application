@@ -1,0 +1,51 @@
+{
+  "annotations": {
+    "changelogDate": "20260224184033"
+  },
+  "applications": ["*"],
+  "fields": [
+    {
+      "fieldName": "identificador",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tipo",
+      "fieldType": "TipoEnvioMasivo",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CARTAS_ACREDITACION,CARTAS_RENOVACION,REMESA_INSS"
+    },
+    {
+      "fieldName": "estado",
+      "fieldType": "EstadoEnvioMasivo",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "PREPARADO,INICIADO,PAUSADO,REANUDADO,FINALIZADO,CANCELADO,ABORTADO"
+    },
+    {
+      "fieldName": "comienzo",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "fin",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "EnvioMasivo",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "aplicacion",
+      "relationshipName": "aplicacion",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "organismoEmisor",
+      "relationshipName": "organismoEmisor",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

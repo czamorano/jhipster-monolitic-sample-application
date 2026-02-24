@@ -44,6 +44,11 @@ public class CacheConfiguration {
             createCache(cm, es.imserso.sample.monoliticapp1.domain.User.class.getName());
             createCache(cm, es.imserso.sample.monoliticapp1.domain.Authority.class.getName());
             createCache(cm, es.imserso.sample.monoliticapp1.domain.User.class.getName() + ".authorities");
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.Aplicacion.class.getName());
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.Aplicacion.class.getName() + ".envioMasivos");
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.OrganismoEmisor.class.getName());
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.OrganismoEmisor.class.getName() + ".envioMasivos");
+            createCache(cm, es.imserso.sample.monoliticapp1.domain.EnvioMasivo.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

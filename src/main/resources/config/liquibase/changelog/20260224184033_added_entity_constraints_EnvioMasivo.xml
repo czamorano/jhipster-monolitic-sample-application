@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity EnvioMasivo.
+    -->
+    <changeSet id="20260224184033-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="aplicacion_id"
+                                 baseTableName="envio_masivo"
+                                 constraintName="fk_envio_masivo__aplicacion_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="aplicacion"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="organismo_emisor_id"
+                                 baseTableName="envio_masivo"
+                                 constraintName="fk_envio_masivo__organismo_emisor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="organismo_emisor"
+                                 />
+    </changeSet>
+</databaseChangeLog>

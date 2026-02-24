@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20260224184032"
+  },
+  "applications": ["*"],
+  "documentation": "not an ignored comment",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codigo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "OrganismoEmisor",
+  "relationships": [
+    {
+      "otherEntityName": "envioMasivo",
+      "otherEntityRelationshipName": "organismoEmisor",
+      "relationshipName": "envioMasivo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

@@ -1,0 +1,14 @@
+{
+  "jhipsterMonoliticSampleApplicationApp": {
+    "EstadoEnvioMasivo": {
+      "null": "",
+      "PREPARADO": "PREPARADO",
+      "INICIADO": "INICIADO",
+      "PAUSADO": "PAUSADO",
+      "REANUDADO": "REANUDADO",
+      "FINALIZADO": "FINALIZADO",
+      "CANCELADO": "CANCELADO",
+      "ABORTADO": "ABORTADO"
+    }
+  }
+}
